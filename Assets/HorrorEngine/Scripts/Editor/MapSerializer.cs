@@ -94,13 +94,14 @@ namespace HorrorEngine
                         linkedElements.Add(objId.Id);
                 }
 
-                MapDetailingShape[] detailing = room.GetComponentsInChildren<MapDetailingShape>();
+                MapDetailingShape[] detailing = room.GetComponentsInChildren<MapDetailingShape>(true);
                 MapDetailsSerializedData[] detailingSerialized = new MapDetailsSerializedData[detailing.Length];
                 for (int i =0; i < detailing.Length; ++i)
                 {
                     MapDetailingShape details = detailing[i];
                     if (details.TryGetComponent(out Shape shape)) 
                     {
+                        var savable = details.GetComponent<MapElementSavable>();
                         detailingSerialized[i] = new MapDetailsSerializedData()
                         {
                             Transform = new MapElementTransform()
@@ -113,16 +114,19 @@ namespace HorrorEngine
                             {
                                 Points = shape.Points.ToArray()
                             },
-                            CreationProcess = details.CreationProcess
+                            DefaultState = details.isActiveAndEnabled,
+                            CreationProcess = details.CreationProcess,
+                            UniqueId = savable ? savable.GetId() : ""
                         };
                     }
                 }
 
-                MapImage[] images = room.GetComponentsInChildren<MapImage>();
+                MapImage[] images = room.GetComponentsInChildren<MapImage>(true);
                 MapImageSerialized[] imagesSerialized = new MapImageSerialized[images.Length];
                 for (int i = 0; i < images.Length; ++i)
                 {
                     MapImage image = images[i];
+                    var savable = image.GetComponent<MapElementSavable>();
                     imagesSerialized[i] = new MapImageSerialized()
                     {
                         Transform = new MapElementTransform()
@@ -131,7 +135,9 @@ namespace HorrorEngine
                             Rotation = image.transform.localRotation.eulerAngles.y,
                             Scale = image.transform.localScale
                         },
-                        Texture = image.Texture
+                        Texture = image.Texture,
+                        DefaultState = image.isActiveAndEnabled,
+                        UniqueId = savable ? savable.GetId() : ""
                     };
                     
                 }

@@ -68,7 +68,10 @@ namespace HorrorEngine
                 GameManager.Instance.Player.GetComponent<GameObjectReset>().ResetComponents();
                 GameManager.Instance.SetFromSavedData(m_LoadedData);
                 
-                ObjectStateManager.Instance.InstantiateSpawned(scene, GameManager.Instance.SpawnableDatabase);
+                var spawnableDB = GameManager.Instance.GetDatabase<SpawnableSavableDatabase>();
+                if (spawnableDB)
+                    ObjectStateManager.Instance.InstantiateSpawned(scene, spawnableDB);
+
                 ObjectStateManager.Instance.ApplyStates();
 
                 GameManager.Instance.StartGame();

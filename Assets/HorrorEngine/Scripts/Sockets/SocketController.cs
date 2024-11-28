@@ -34,7 +34,11 @@ namespace HorrorEngine
             if (m_Sockets == null || m_HashedSockets.Count == 0)
                 Init();
 
-            Debug.Assert(m_HashedSockets.ContainsKey(handle), "SocketController doesn't contain handle : " + handle.name);
+            if (!m_HashedSockets.ContainsKey(handle))
+            {
+                Debug.LogWarning("SocketController doesn't contain socket with handle : " + handle.name);
+                return null;
+            }
 
             return m_HashedSockets[handle];
         }

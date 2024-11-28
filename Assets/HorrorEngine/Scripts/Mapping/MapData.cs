@@ -25,6 +25,21 @@ namespace HorrorEngine
         public Texture2D Texture;
         [Range(0, 100)]
         public int Order;
+        public string UniqueId;
+        public bool DefaultState;
+
+        public bool GetState()
+        {
+            if (string.IsNullOrEmpty(UniqueId))
+                return DefaultState;
+
+            if (ObjectStateManager.Instance.GetState(UniqueId, out ObjectStateSaveDataEntry savedObjectState))
+            {
+                return savedObjectState.Active;
+            }
+
+            return DefaultState;
+        }
     }
 
     [Serializable]
@@ -35,6 +50,21 @@ namespace HorrorEngine
         public int Order;
         public ShapeData Shape;
         public ShapeCreationProcess CreationProcess;
+        public string UniqueId;
+        public bool DefaultState;
+
+        public bool GetState()
+        {
+            if (string.IsNullOrEmpty(UniqueId))
+                return DefaultState;
+
+            if (ObjectStateManager.Instance.GetState(UniqueId, out ObjectStateSaveDataEntry savedObjectState))
+            {
+                return savedObjectState.Active;
+            }
+
+            return DefaultState;
+        }
     }
 
     [Serializable]

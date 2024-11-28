@@ -14,6 +14,8 @@ namespace HorrorEngine
         [SerializeField] private HitBox m_HitBox;
         [Tooltip("This determines the maximum number of damageables that will be hit. Leave at 0 to hit all damageables")]
         [SerializeField] private int m_PenetrationHits = 0;
+        [Tooltip("This determines if this attack can hit the same damageable after a successfull hit")]
+        [SerializeField] private bool m_CanReHitDamageable;
 
         public UnityEvent OnAttackStart;
         public UnityEvent OnAttackEnd;
@@ -23,6 +25,8 @@ namespace HorrorEngine
         private float m_Time;
         private int m_Hits;
         private List<Damageable> m_Damageables = new List<Damageable>();
+
+        
 
         // --------------------------------------------------------------------
 
@@ -78,6 +82,17 @@ namespace HorrorEngine
 
         private void Hit()
         {
+            if (!m_Attack)
+            {
+                Debug.LogError("Attack has not been set but Hit has been called", gameObject);
+                return;
+            }
+
+            if (m_CanReHitDamageable)
+            {
+               m_DamageableSort.Clear();
+            }
+
             m_HitBox.GetOverlappingDamageables(m_Damageables);
             m_DamageableSort.SortAndGetImpacted(ref m_Damageables, m_Attack);
 

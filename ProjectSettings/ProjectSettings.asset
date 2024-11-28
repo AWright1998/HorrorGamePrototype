@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 2051991f7e191a943a0a5a04351e612a
+  productGUID: 37e716da1870e274480eb853caaf15d1
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -666,14 +666,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: RetroHorrorPrototype
+  metroPackageName: HorrorGamePrototype
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: RetroHorrorPrototype
+  metroApplicationDescription: HorrorGamePrototype
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0

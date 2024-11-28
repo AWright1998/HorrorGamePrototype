@@ -105,8 +105,10 @@ namespace HorrorEngine
         public void SetFromSavedData(string savedData)
         {
             InventoryEntrySaveData savable = JsonUtility.FromJson<InventoryEntrySaveData>(savedData);
+            var itemDB = GameManager.Instance.GetDatabase<ItemDatabase>();
+            if (itemDB)
+                Entry.Item = string.IsNullOrEmpty(savable.ItemId) ? null : itemDB.GetRegister(savable.ItemId);
 
-            Entry.Item = string.IsNullOrEmpty(savable.ItemId) ? null : GameManager.Instance.ItemDatabase.GetRegister(savable.ItemId);
             Entry.Count = savable.Count;
             Entry.SecondaryCount = savable.SecondaryCount;
             Entry.Status = savable.Status;

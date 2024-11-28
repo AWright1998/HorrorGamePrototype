@@ -16,23 +16,7 @@ MonoBehaviour:
   Name: Meep
   Prefab: {fileID: 1667111702831426342, guid: e9cd5affbbdfff94fb48bfe982be389f, type: 3}
   InitialInventorySize: 8
-  InitialInventory:
-  - Item: {fileID: 11400000, guid: 43713080a20059f4a9e5783dd395e4f7, type: 2}
-    Count: 1
-    SecondaryCount: 15
-    Status: 0
-  - Item: {fileID: 11400000, guid: a901d2e6294c1574dbccbee49b37812a, type: 2}
-    Count: 1
-    SecondaryCount: 30
-    Status: 0
-  - Item: {fileID: 11400000, guid: a15ea9176b3911444be55a8e5ef30927, type: 2}
-    Count: 1
-    SecondaryCount: 30
-    Status: 0
-  - Item: {fileID: 11400000, guid: be47060051e3b9f409f698c455fb2110, type: 2}
-    Count: 1
-    SecondaryCount: 30
-    Status: 0
+  InitialInventory: []
   InitialStorageBox:
     Name: Storage Box
     Capacity: 80

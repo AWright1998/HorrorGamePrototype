@@ -77,11 +77,12 @@ namespace HorrorEngine
 
             if (savedData.Items != null)
             {
+                var itemsDB = GameManager.Instance.GetDatabase<ItemDatabase>();
                 foreach (var item in savedData.Items)
                 {
                     Items.Add(new InventoryEntry()
                     {
-                        Item = GameManager.Instance.ItemDatabase.GetRegister(item.ItemId),
+                        Item = itemsDB.GetRegister(item.ItemId),
                         Count = item.Count,
                         SecondaryCount = item.SecondaryCount
                     });

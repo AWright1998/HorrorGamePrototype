@@ -1,27 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HorrorEngine 
+namespace HorrorEngine
 {
-
-    [System.Serializable]
-    public class UIPlayerStatusEntry
-    {
-        public float FromHealth;
-        public Color Color;
-        public float Tiling = 1f;
-        public float Interval = 1f;
-        public float Speed = 1f;
-        public string Text;
-    }
     public class UIPlayerStatus : MonoBehaviour
     {
-        [SerializeField] private UIPlayerStatusEntry[] Status;
-
         [SerializeField] private UIStatusLine m_Line;
         [SerializeField] private Image m_StatusBg;
+        [SerializeField] private Image m_StatusIcon;
         [SerializeField] private TMPro.TextMeshProUGUI m_StatusText;
 
+        private Status m_Status;
         private Health m_Health;
 
         // --------------------------------------------------------------------
@@ -60,12 +49,19 @@ namespace HorrorEngine
 
         private void BindToPlayer(PlayerActor player)
         {
-            if (m_Health)
-                m_Health.OnHealthAltered.RemoveListener(OnHealthAltered);
+            Debug.Assert(m_Health == null, "UIPlayerStatus was already bound to a player");
 
             m_Health = player.GetComponent<Health>();
-            m_Health.OnHealthAltered.AddListener(OnHealthAltered);
-            
+            m_Status = player.GetComponent<Status>();
+
+            if (m_Health)
+                m_Health.OnHealthAltered.AddListener(OnHealthAltered);
+
+            if (m_Status)
+                m_Status.OnStatusChanged.AddListener(OnStatusChanged);
+
+            GameManager.Instance.OnPlayerRegistered.RemoveListener(OnPlayerRegistered);
+
             UpdateStatus();
         }
 
@@ -76,7 +72,8 @@ namespace HorrorEngine
             if (m_Health)
                 m_Health.OnHealthAltered.RemoveListener(OnHealthAltered);
 
-            GameManager.Instance.OnPlayerRegistered.RemoveListener(OnPlayerRegistered);
+            if (m_Status)
+                m_Status.OnStatusChanged.RemoveListener(OnStatusChanged);
         }
 
         // --------------------------------------------------------------------
@@ -88,24 +85,26 @@ namespace HorrorEngine
 
         // --------------------------------------------------------------------
 
+        private void OnStatusChanged(StatusData newStatus)
+        {
+            UpdateStatus();
+        }
+
+        // --------------------------------------------------------------------
+
         private void UpdateStatus()
         {
-            
-            float maxHealth = 0;
-            UIPlayerStatusEntry selectedStatus = null;
-            foreach (var state in Status)
-            {
-                if (selectedStatus == null || (m_Health.Value >= state.FromHealth && state.FromHealth > maxHealth))
-                {
-                    maxHealth = state.FromHealth;
-                    selectedStatus = state;
-                }
-            }
+            if (m_Status == null)
+                return;
 
-            m_StatusBg.color = selectedStatus.Color;
-            m_StatusText.text = selectedStatus.Text;
-            m_Line.SetStatus(selectedStatus);
-            
+            var currentStatus = m_Status.GetCurrentStatus();
+
+            if (currentStatus != null)
+            {
+                m_StatusBg.color = currentStatus.Color;
+                m_StatusText.text = currentStatus.Text;
+                m_Line.SetStatus(currentStatus);
+            }
         }
     }
 }

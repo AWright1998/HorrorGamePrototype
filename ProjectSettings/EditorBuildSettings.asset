@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/HorrorEngine/AddOns/StatusEffects/Scene/StatusEffects.unity
+    guid: 1f3057ba5b638d54c9b3a4a6d7f55b4f
+  - enabled: 1
     path: Assets/HorrorEngine/ExampleContent/Scenes/SampleMainMenu.unity
     guid: 244f0b785e69f4b4480ac64c30aa42fa
   - enabled: 1

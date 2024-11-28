@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c538c6bb51028054893a5518cb912247, type: 3}
   m_Name: ItemDB
   m_EditorClassIdentifier: 
+  Prototype: {fileID: 0}
   Registers:
   - {fileID: 11400000, guid: a15ea9176b3911444be55a8e5ef30927, type: 2}
   - {fileID: 11400000, guid: 5bac8dbb311284b85a00faca85506be6, type: 2}
@@ -29,3 +30,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 328cf3d54a3619b4d9c00d4f63f17d82, type: 2}
   - {fileID: 11400000, guid: 6502a202f230d7547b8b4ade1ce80eac, type: 2}
   - {fileID: 11400000, guid: c188f38e091dd5643af65a2c9319d35b, type: 2}
+  - {fileID: 11400000, guid: 8941d13940a399144be6ff5da644cb8b, type: 2}
+  - {fileID: 11400000, guid: a1462d97c93a14544b382878316c611c, type: 2}

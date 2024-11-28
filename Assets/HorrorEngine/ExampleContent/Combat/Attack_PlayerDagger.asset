@@ -19,6 +19,8 @@ MonoBehaviour:
     Filters:
     - {fileID: 11400000, guid: d54003c4b56aad44ca467ac988b98712, type: 2}
     PreDamageEffects:
-    - {fileID: 11400000, guid: 43ba0910f3b241b40b7df44237b6c76e, type: 2}
-    - {fileID: 11400000, guid: 49d5c3b88315dc44c9f51cb9ac8805c7, type: 2}
+    - Effect: {fileID: 11400000, guid: 43ba0910f3b241b40b7df44237b6c76e, type: 2}
+      Chance: 1
+    - Effect: {fileID: 11400000, guid: 49d5c3b88315dc44c9f51cb9ac8805c7, type: 2}
+      Chance: 1
     PostDamageEffects: []

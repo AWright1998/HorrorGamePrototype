@@ -28,7 +28,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027679269891604231}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 1905786596599384586}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5379111683642358938
 MonoBehaviour:
@@ -51,26 +51,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnPickup:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  PickupSound: {fileID: 0}
+      m_Calls: []
   Entry:
-    Item: {fileID: 11400000, guid: 43713080a20059f4a9e5783dd395e4f7, type: 2}
+    Item: {fileID: 0}
     Count: 1
     SecondaryCount: 0
     Status: 0
-  ShowItemSplash: 1
   Data_OBSOLETE: {fileID: 0}
   Amount_OBSOLETE: 1
   m_UseOnPickup: 0
@@ -130,7 +116,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 2027679269891604227}
     m_Modifications:
     - target: {fileID: 455273963870671028, guid: c10c3cc2aac81144a8b7872c3df610a0, type: 3}
@@ -226,9 +211,6 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c10c3cc2aac81144a8b7872c3df610a0, type: 3}
 --- !u!4 &1905786596599384586 stripped
 Transform:

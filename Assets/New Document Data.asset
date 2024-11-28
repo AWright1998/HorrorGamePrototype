@@ -19,7 +19,17 @@ MonoBehaviour:
   ShowPageCount: 1
   PagesText_DEPRECATED: []
   Pages:
-  - Text: This is a Note
+  - Text: Hello welcome to my prototype demo
+    Image: {fileID: 21300000, guid: 4d477f12d92eba042acbe5e06a3f3cff, type: 3}
+    ImageCaption: 
+    ChangeColor: 0
+    ImageColor: {r: 0, g: 0, b: 0, a: 0}
+  - Text: This will demonstrate my project for my dissertation
+    Image: {fileID: 21300000, guid: 4d477f12d92eba042acbe5e06a3f3cff, type: 3}
+    ImageCaption: 
+    ChangeColor: 0
+    ImageColor: {r: 0, g: 0, b: 0, a: 0}
+  - Text: 'I shall show you the fixed camera angles and combat system '
     Image: {fileID: 21300000, guid: 4d477f12d92eba042acbe5e06a3f3cff, type: 3}
     ImageCaption: 
     ChangeColor: 0

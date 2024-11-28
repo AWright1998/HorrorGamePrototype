@@ -74,6 +74,7 @@ namespace HorrorEngine
 
         // --------------------------------------------------------------------
 
+        [ContextMenu("Save State")]
         public void SaveState()
         {
             ObjectStateManager.Instance.SetState(GetSavableData());

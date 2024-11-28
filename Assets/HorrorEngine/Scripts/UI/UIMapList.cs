@@ -33,42 +33,46 @@ namespace HorrorEngine
         public void Fill()
         {
             var gameData = GameManager.Instance;
-            var mapDB = gameData.MapDatabase;
-            for (int i = 0; i < mapDB.Registers.Count; ++i)
+            var mapDB = GameManager.Instance.GetDatabase<MapDatabase>();
+            if (mapDB)
             {
-                Transform item;
-                if (i >= m_MapListContent.childCount)
+                for (int i = 0; i < mapDB.Registers.Count; ++i)
                 {
-                    item = Instantiate(m_MapListItemPrefab).transform;
-                    item.SetParent(m_MapListContent);
+                    Transform item;
+                    if (i >= m_MapListContent.childCount)
+                    {
+                        item = Instantiate(m_MapListItemPrefab).transform;
+                        item.SetParent(m_MapListContent);
 
-                    Button button = item.GetComponentInChildren<Button>();
-                    button.onClick.AddListener(OnMapEntryClicked);
+                        Button button = item.GetComponentInChildren<Button>();
+                        button.onClick.AddListener(OnMapEntryClicked);
+                    }
+                    else
+                    {
+                        item = m_MapListContent.GetChild(i);
+                    }
+
+                    var tmPro = item.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                    MapData map = mapDB.Registers[i];
+                    bool playerHasMap = gameData.Inventory.Maps.Contains(map);
+                    bool unveiled = playerHasMap || map.GetVisited();
+                    tmPro.text = unveiled ? map.Name : m_UnknownMapName;
+
+                    item.GetComponentInChildren<Button>().interactable = unveiled;
                 }
-                else
-                {
-                    item = m_MapListContent.GetChild(i);
-                }
-
-                var tmPro = item.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-                MapData map = mapDB.Registers[i];
-                bool playerHasMap = gameData.Inventory.Maps.Contains(map);
-                bool unveiled = playerHasMap || map.GetVisited();
-                tmPro.text = unveiled ? map.Name : m_UnknownMapName;
-
-                item.GetComponentInChildren<Button>().interactable = unveiled;
             }
         }
 
         private void OnMapEntryClicked()
         {
             var selected = EventSystem.current.currentSelectedGameObject;
-            for(int i = 0; i < m_MapListContent.childCount; ++i)
+            var mapDB = GameManager.Instance.GetDatabase<MapDatabase>();
+            for (int i = 0; i < m_MapListContent.childCount; ++i)
             {
                 var child = m_MapListContent.GetChild(i);
                 if (selected == child.gameObject)
                 {
-                    OnMapSelected?.Invoke(GameManager.Instance.MapDatabase.Registers[i]);
+                    OnMapSelected?.Invoke(mapDB.Registers[i]);
                 }
             }
         }

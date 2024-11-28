@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,6 +10,8 @@ namespace HorrorEngine
 {
     public abstract class RegisterDatabase : ScriptableObject
     {
+        public abstract void HashRegisters();
+
 #if UNITY_EDITOR
         public abstract void UpdateDatabase();
 #endif
@@ -23,7 +26,7 @@ namespace HorrorEngine
 
         // --------------------------------------------------------------------
 
-        public void HashRegisters()
+        public override void HashRegisters()
         {
             Debug.Assert(this != Prototype, "RegisterDatabase is referencing at itself as Prototype", this);
 
@@ -33,13 +36,21 @@ namespace HorrorEngine
             {
                 foreach (T reg in Prototype.Registers)
                 {
-                    m_HashedRegisters[reg.UniqueId] = reg;
+                    Debug.Assert(reg != null, $"There is an null entry in the database {Prototype.name}");
+                    if (reg)
+                    {
+                        m_HashedRegisters[reg.UniqueId] = reg;
+                    }
                 }
             }
 
             foreach (T reg in Registers)
             {
-                m_HashedRegisters[reg.UniqueId] = reg;
+                Debug.Assert(reg != null, $"There is an null entry in the database {this.name}");
+                if (reg)
+                {
+                    m_HashedRegisters[reg.UniqueId] = reg;
+                }
             }
         }
 
@@ -49,6 +60,7 @@ namespace HorrorEngine
         {
             return m_HashedRegisters[uniqueId];
         }
+
 
         // --------------------------------------------------------------------
 

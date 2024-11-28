@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace HorrorEngine
 {
-   
-
     public class EquippedItemChangedMessage : CharacterMessage
     {
         public InventoryEntry InventoryEntry;
@@ -721,55 +719,72 @@ namespace HorrorEngine
 
             Clear();
 
+            var gameMgr = GameManager.Instance;
+            var itemsDB = gameMgr.GetDatabase<ItemDatabase>();
+
             // Load items
-            for (int i = 0; i < Items.Length; ++i)
+            if (itemsDB)
             {
-                if (i < savedData.Items.Count && !string.IsNullOrEmpty(savedData.Items[i].ItemId))
+                for (int i = 0; i < Items.Length; ++i)
                 {
-                    Items[i].Item = GameManager.Instance.ItemDatabase.GetRegister(savedData.Items[i].ItemId);
-                    Items[i].Count = savedData.Items[i].Count;
-                    Items[i].SecondaryCount = savedData.Items[i].SecondaryCount;
-                    Items[i].Status = savedData.Items[i].Status;
-                }
-                else
-                {
-                    Items[i].Item = null;
-                    Items[i].Count = 0;
-                    Items[i].SecondaryCount = 0;
-                    Items[i].Status = 0;
+                    if (i < savedData.Items.Count && !string.IsNullOrEmpty(savedData.Items[i].ItemId))
+                    {
+                        Items[i].Item = itemsDB.GetRegister(savedData.Items[i].ItemId);
+                        Items[i].Count = savedData.Items[i].Count;
+                        Items[i].SecondaryCount = savedData.Items[i].SecondaryCount;
+                        Items[i].Status = savedData.Items[i].Status;
+                    }
+                    else
+                    {
+                        Items[i].Item = null;
+                        Items[i].Count = 0;
+                        Items[i].SecondaryCount = 0;
+                        Items[i].Status = 0;
+                    }
                 }
             }
 
             // Load equipped items
             List<InventoryEntry> equipped = new List<InventoryEntry>();
-            foreach (var savedEquipment in savedData.EquippedItems)
+            if (itemsDB)
             {
-                if (savedEquipment.InventoryIndex >= 0)
+                foreach (var savedEquipment in savedData.EquippedItems)
                 {
-                    equipped.Add(Items[savedEquipment.InventoryIndex]);
-                }
-                else
-                {
-                    equipped.Add(new InventoryEntry()
+                    if (savedEquipment.InventoryIndex >= 0)
                     {
-                        Item = GameManager.Instance.ItemDatabase.GetRegister(savedEquipment.OptionalData.ItemId),
-                        Count = savedEquipment.OptionalData.Count,
-                        SecondaryCount = savedEquipment.OptionalData.SecondaryCount,
-                        Status = savedEquipment.OptionalData.Status,
-                    });
+                        equipped.Add(Items[savedEquipment.InventoryIndex]);
+                    }
+                    else
+                    {
+                        equipped.Add(new InventoryEntry()
+                        {
+                            Item = itemsDB.GetRegister(savedEquipment.OptionalData.ItemId),
+                            Count = savedEquipment.OptionalData.Count,
+                            SecondaryCount = savedEquipment.OptionalData.SecondaryCount,
+                            Status = savedEquipment.OptionalData.Status,
+                        });
+                    }
                 }
             }
 
             // Load Documents
-            foreach (var docId in savedData.Documents)
+            var docsDB = gameMgr.GetDatabase<DocumentDatabase>();
+            if (docsDB)
             {
-                Documents.Add(GameManager.Instance.DocumentDatabase.GetRegister(docId));
+                foreach (var docId in savedData.Documents)
+                {
+                    Documents.Add(docsDB.GetRegister(docId));
+                }
             }
 
-            // Load Documents
-            foreach (var mapId in savedData.Maps)
+            // Load Maps
+            var mapsDB = gameMgr.GetDatabase<MapDatabase>();
+            if (mapsDB)
             {
-                Maps.Add(GameManager.Instance.MapDatabase.GetRegister(mapId));
+                foreach (var mapId in savedData.Maps)
+                {
+                    Maps.Add(mapsDB.GetRegister(mapId));
+                }
             }
 
             foreach (var e in equipped)

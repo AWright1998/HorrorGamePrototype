@@ -4,13 +4,20 @@ using UnityEngine;
 namespace HorrorEngine
 {
     [System.Serializable]
+    public class AttackEffectEntry
+    {
+        public AttackEffect Effect;
+        [Range(0, 1)] public float Chance = 1;
+    }
+
+    [System.Serializable]
     public class AttackImpact
     {
         public float Damage;
         public DamageableType[] Damageable;
         public AttackFilter[] Filters;
-        public AttackEffect[] PreDamageEffects;
-        public AttackEffect[] PostDamageEffects;
+        public AttackEffectEntry[] PreDamageEffects;
+        public AttackEffectEntry[] PostDamageEffects;
     }
 
     [CreateAssetMenu(menuName = "Horror Engine/Combat/AttackType")]

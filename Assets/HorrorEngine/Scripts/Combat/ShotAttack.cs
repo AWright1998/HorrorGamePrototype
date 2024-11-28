@@ -211,23 +211,16 @@ namespace HorrorEngine
 
         private float GetNonObstructedMaxRange(Vector3 originPos, Vector3 dir)
         {
-            float maxRange = 0;
+            float maxRange = m_MaxRange;
+
             RaycastHit hit;
+            if (Physics.Raycast(originPos, dir, out hit, m_MaxRange, m_ObstructionLayerMask)) maxRange = Mathf.Max(maxRange, hit.distance);
+            if (Physics.Raycast(originPos + Vector3.up * m_CastRadius,  dir, out hit, m_MaxRange, m_ObstructionLayerMask)) maxRange = Mathf.Max(maxRange, hit.distance);
+            if (Physics.Raycast(originPos + Vector3.down * m_CastRadius, dir, out hit, m_MaxRange, m_ObstructionLayerMask)) maxRange = Mathf.Max(maxRange, hit.distance);
+            if (Physics.Raycast(originPos + Vector3.left * m_CastRadius, dir, out hit, m_MaxRange, m_ObstructionLayerMask)) maxRange = Mathf.Max(maxRange, hit.distance);
+            if (Physics.Raycast(originPos + Vector3.right * m_CastRadius, dir, out hit, m_MaxRange, m_ObstructionLayerMask)) maxRange = Mathf.Max(maxRange, hit.distance);
 
-            Physics.Raycast(originPos, dir, out hit, m_MaxRange, m_ObstructionLayerMask);
-            maxRange = Mathf.Max(maxRange, hit.distance);
-            Physics.Raycast(originPos + Vector3.up * m_CastRadius,  dir, out hit, m_MaxRange, m_ObstructionLayerMask);
-            maxRange = Mathf.Max(maxRange, hit.distance);
-            Physics.Raycast(originPos + Vector3.down * m_CastRadius, dir, out hit, m_MaxRange, m_ObstructionLayerMask);
-            maxRange = Mathf.Max(maxRange, hit.distance);
-            Physics.Raycast(originPos + Vector3.left * m_CastRadius, dir, out hit, m_MaxRange, m_ObstructionLayerMask);
-            maxRange = Mathf.Max(maxRange, hit.distance);
-            Physics.Raycast(originPos + Vector3.right * m_CastRadius, dir, out hit, m_MaxRange, m_ObstructionLayerMask);
-            maxRange = Mathf.Max(maxRange, hit.distance);
-
-            maxRange = Mathf.Min(maxRange, m_MaxRange);
-
-            return maxRange;
+            return Mathf.Min(maxRange, m_MaxRange);
         }
 
         // --------------------------------------------------------------------

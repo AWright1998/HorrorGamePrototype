@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HorrorEngine
@@ -9,15 +7,44 @@ namespace HorrorEngine
     {
         [SerializeField] private float m_Regeneration;
         [SerializeField] private bool m_CompleteRegeneration;
+        [SerializeField] private StatusData[] m_RemoveStatus;
+        [SerializeField] private StatusEffect[] m_RemoveStatusEffect;
 
         public override void OnUse(InventoryEntry entry)
         {
             base.OnUse(entry);
 
+            PlayerActor player = GameManager.Instance.Player;
+
             if (m_CompleteRegeneration)
-                GameManager.Instance.Player.GetComponent<Health>().RegenerateAll();
+                player.GetComponent<Health>().RegenerateAll();
             else
-                GameManager.Instance.Player.GetComponent<Health>().Regenerate(m_Regeneration);
+                player.GetComponent<Health>().Regenerate(m_Regeneration);
+
+            if (m_RemoveStatus.Length > 0)
+            {
+                var playerStatus = player.GetComponent<Status>();
+                Debug.Assert(playerStatus, "HealthKit is trying to remove status but the player has no Status component");
+                if (playerStatus != null)
+                {
+                    foreach (StatusData status in m_RemoveStatus)
+                    {
+                        playerStatus.RemoveStatus(status);
+                    }
+                }
+            }
+
+            if (m_RemoveStatusEffect.Length > 0)
+            {
+                var statusEffectHandler = player.GetComponent<StatusEffectHandler>();
+                if (statusEffectHandler != null)
+                {
+                    foreach (StatusEffect statusEffect in m_RemoveStatusEffect)
+                    {
+                        statusEffectHandler.RemoveStatusEffect(statusEffect);
+                    }
+                }
+            }
         }
     }
 }

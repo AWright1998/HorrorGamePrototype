@@ -41,10 +41,7 @@ namespace HorrorEngine
         public ContainerData SharedStorageBox;
 
         [Header("Databases")]
-        public ItemDatabase ItemDatabase;
-        public DocumentDatabase DocumentDatabase;
-        public MapDatabase MapDatabase;
-        public SpawnableSavableDatabase SpawnableDatabase;
+        public RegisterDatabase[] Databases;
 
         [HideInInspector]
         public UnityEvent<PlayerActor> OnPlayerRegistered;
@@ -213,9 +210,25 @@ namespace HorrorEngine
 
         public void InitializeRegisters()
         {
-            ItemDatabase.HashRegisters();
-            DocumentDatabase.HashRegisters();
-            MapDatabase.HashRegisters();
+            foreach(var db in Databases)
+            {
+                db.HashRegisters();
+            }
+        }
+
+        // --------------------------------------------------------------------
+
+        public T GetDatabase<T>() where T : RegisterDatabase
+        {
+            foreach (var db in Databases)
+            {
+                if (db is T)
+                    return db as T;
+            }
+
+            Debug.LogError($"Database of type {typeof(T)} could not be found in the GameManager");
+
+            return null;
         }
 
         // --------------------------------------------------------------------
@@ -236,8 +249,12 @@ namespace HorrorEngine
 
         void OnSceneTransitionPost(SceneTransitionPostMessage msg)
         {
-            ObjectStateManager.Instance.InstantiateSpawned(SceneManager.GetActiveScene(), SpawnableDatabase);
-            ObjectStateManager.Instance.ApplyStates();
+            SpawnableSavableDatabase spawnableDatabase = GetDatabase<SpawnableSavableDatabase>();
+            if (spawnableDatabase)
+            {
+                ObjectStateManager.Instance.InstantiateSpawned(SceneManager.GetActiveScene(), spawnableDatabase);
+                ObjectStateManager.Instance.ApplyStates();
+            }
         }
 
         // --------------------------------------------------------------------

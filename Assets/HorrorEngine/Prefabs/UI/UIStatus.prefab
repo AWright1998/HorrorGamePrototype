@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4591858536237759735}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -107,12 +106,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4591858536237759735}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -5.5, y: 5.2}
-  m_SizeDelta: {x: 50.7, y: 21.5}
+  m_SizeDelta: {x: -149.3, y: 21.5}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &6397545530637592916
 CanvasRenderer:
@@ -169,7 +167,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.05
+  m_fontSize: 16.1
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -205,7 +203,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -34.295624, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -247,7 +245,6 @@ RectTransform:
   - {fileID: 260716974304608047}
   - {fileID: 6024743368542960898}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -304,27 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2204eb248d176428a81f38e6788535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Status:
-  - FromHealth: 0
-    Color: {r: 0.9716981, g: 0.23682575, b: 0.049501523, a: 1}
-    Tiling: 2
-    Interval: 1
-    Speed: 2
-    Text: Danger
-  - FromHealth: 2
-    Color: {r: 1, g: 0.6971461, b: 0.30588233, a: 1}
-    Tiling: 2
-    Interval: 1
-    Speed: 1
-    Text: Warning
-  - FromHealth: 3
-    Color: {r: 0.4716927, g: 0.8679245, b: 0.35535777, a: 1}
-    Tiling: 1
-    Interval: 1
-    Speed: 0.5
-    Text: Fine
   m_Line: {fileID: 5018234816945914031}
   m_StatusBg: {fileID: 4358076694869639502}
+  m_StatusIcon: {fileID: 0}
   m_StatusText: {fileID: 7404994520757011802}
 --- !u!1 &6034730961752590895
 GameObject:
@@ -358,7 +337,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4591858536237759735}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -446,7 +424,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4591858536237759735}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

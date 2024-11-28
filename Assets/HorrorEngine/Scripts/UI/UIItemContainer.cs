@@ -212,6 +212,7 @@ namespace HorrorEngine
             for (int i = 0; i < items.Length; ++i)
             {
                 m_InventorySlots[i].Fill(items[i]);
+                m_InventorySlots[i].gameObject.SetActive(true);
             }
 
             for (int i = items.Length; i < m_InventorySlots.Count; ++i)

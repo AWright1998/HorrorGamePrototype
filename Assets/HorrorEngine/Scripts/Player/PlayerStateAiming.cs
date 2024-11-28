@@ -121,8 +121,6 @@ namespace HorrorEngine
                 ClearDeadTargets();
             }
 
-            Debug.Log("-----------------");
-
             // High priority check
             AddAimablesAtRange(m_AutoAimingRange * k_HighPriorityCheckDistanceFactor);
            
@@ -131,8 +129,6 @@ namespace HorrorEngine
             {
                 AddAimablesAtRange(m_AutoAimingRange);
             }
-
-            Debug.Log("-----------------");
         }
 
         private void AddAimablesAtRange(float range)
@@ -149,7 +145,6 @@ namespace HorrorEngine
                         if (!m_DetectedAimables.Contains(aimable))
                         {
                             m_DetectedAimables.Add(aimable);
-                            Debug.Log(aimable, aimable.gameObject);
                         }
                     }
                 }
@@ -257,8 +252,6 @@ namespace HorrorEngine
             m_AutoAimingDir.y = 0;
             m_AutoAimingDir.Normalize();
             m_AutoAimingAngle = Vector3.Angle(m_AutoAimingDir, Actor.transform.forward);
-
-            Debug.Log("Set Aim At: " + aimable, aimable.gameObject);
         }
 
         // --------------------------------------------------------------------

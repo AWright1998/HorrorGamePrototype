@@ -61,9 +61,10 @@ namespace HorrorEngine
 
                 if (impact.PreDamageEffects != null)
                 {
-                    foreach (var effect in impact.PreDamageEffects)
+                    foreach (var effectEntry in impact.PreDamageEffects)
                     {
-                        effect.Apply(info);
+                        if (Random.value <= effectEntry.Chance)
+                            effectEntry.Effect.Apply(info);
                     }
                 }
 
@@ -71,9 +72,10 @@ namespace HorrorEngine
 
                 if (impact.PostDamageEffects != null)
                 {
-                    foreach (var effect in impact.PostDamageEffects)
+                    foreach (var effectEntry in impact.PostDamageEffects)
                     {
-                        effect.Apply(info);
+                        if (Random.value <= effectEntry.Chance)
+                            effectEntry.Effect.Apply(info);
                     }
                 }
             }

@@ -174,6 +174,10 @@ namespace HorrorEngine
                 var dTRS = roomTRS * Matrix4x4.TRS(new Vector3(details.Transform.Offset.x, details.Order*0.01f, details.Transform.Offset.y), Quaternion.Euler(0, details.Transform.Rotation, 0), details.Transform.Scale);
                 var newDetails = details.CreationProcess.Create(room.Name + "_Detailing_" + index, m_MapContent, layer, new ShapeData[]{ details.Shape }, dTRS);
                 newDetails.transform.localPosition = new Vector3(newDetails.transform.localPosition.x, m_DetailingHeight, newDetails.transform.localPosition.z);
+
+                bool isActive = details.GetState();
+                newDetails.gameObject.SetActive(isActive);
+
                 ++index;
             }
 
@@ -193,6 +197,9 @@ namespace HorrorEngine
                 Material mat = new Material(ImageMaterial);
                 mat.SetTexture("_MainTex", image.Texture);
                 newImage.GetComponent<Renderer>().material = mat;
+
+                bool isActive = image.GetState();
+                newImage.gameObject.SetActive(isActive);
 
                 ++index;
             }

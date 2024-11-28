@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -21,7 +22,7 @@ namespace HorrorEngine
 
         // --------------------------------------------------------------------
 
-        public void HashRegisters()
+        public override void HashRegisters()
         {
             m_HashedEntries.Clear();
             if (Entries != null)

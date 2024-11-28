@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace HorrorEngine
 {
@@ -8,6 +9,8 @@ namespace HorrorEngine
         public ActorHandle Handle;
         public Animator MainAnimator;
         public ActorStateController StateController { get; private set; }
+
+        public UnityEvent OnTeleported;
 
         private HashSet<Object> m_DisableContext = new HashSet<Object>();
 
@@ -69,6 +72,7 @@ namespace HorrorEngine
         public void PlaceAt(Vector3 position, Quaternion rotation)
         {
             transform.SetLocalPositionAndRotation(position, rotation);
+            OnTeleported?.Invoke();
         }
 
     }

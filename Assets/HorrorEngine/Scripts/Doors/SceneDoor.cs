@@ -19,10 +19,10 @@ namespace HorrorEngine
 
         protected void TeleportInteractor(Transform point)
         {
-            var player = m_Interactor.GetComponent<PlayerActor>();
-            if (player)
+            var actor = m_Interactor.GetComponent<Actor>();
+            if (actor)
             {
-                player.PlaceAt(point);
+                actor.PlaceAt(point);
             }
             else
             {
