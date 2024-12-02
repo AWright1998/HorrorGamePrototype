@@ -25,9 +25,9 @@ MonoBehaviour:
   Slot: 1
   CharacterAttachment:
     Socket: {fileID: 11400000, guid: 66be86ee20b277041876bdc5d848683a, type: 2}
-    Position: {x: 0.0002, y: 0.0003, z: 0.00045}
-    Rotation: {x: -1.45, y: -90, z: -87}
-    Scale: {x: 0.01, y: 0.01, z: 0.01}
+    Position: {x: 12.61, y: 3.6, z: -1.86}
+    Rotation: {x: 84.990036, y: 276.62006, z: 93.670044}
+    Scale: {x: 165.95, y: 228.9, z: 202.3}
   AttachOnEquipped: 1
   MoveOutOfInventoryOnEquip: 0
   AnimatorOverride:

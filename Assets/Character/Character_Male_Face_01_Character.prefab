@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Male_Face_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1024860913751546, guid: 1f1808cdc41ec454989d5d2b330eeac3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4780083634823512, guid: 1f1808cdc41ec454989d5d2b330eeac3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

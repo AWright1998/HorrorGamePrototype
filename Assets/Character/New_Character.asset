@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New_Character
   m_EditorClassIdentifier: 
   UniqueId: bc9f8dd8-fb2d-4e11-9d3f-aee09a6689f2
-  Name: Meep
+  Name: Dan
   Prefab: {fileID: 1667111702831426342, guid: e9cd5affbbdfff94fb48bfe982be389f, type: 3}
   InitialInventorySize: 8
   InitialInventory: []
