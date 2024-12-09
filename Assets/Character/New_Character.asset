@@ -16,7 +16,11 @@ MonoBehaviour:
   Name: Dan
   Prefab: {fileID: 1667111702831426342, guid: e9cd5affbbdfff94fb48bfe982be389f, type: 3}
   InitialInventorySize: 8
-  InitialInventory: []
+  InitialInventory:
+  - Item: {fileID: 11400000, guid: a901d2e6294c1574dbccbee49b37812a, type: 2}
+    Count: 1
+    SecondaryCount: 30
+    Status: 0
   InitialStorageBox:
     Name: Storage Box
     Capacity: 80
