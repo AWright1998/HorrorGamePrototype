@@ -21,7 +21,7 @@ MonoBehaviour:
     Count: 1
     SecondaryCount: 30
     Status: 0
-  - Item: {fileID: 11400000, guid: 65b345d7bcb661b4a92b813903b30e2e, type: 2}
+  - Item: {fileID: 11400000, guid: dc55256a7c75c294cb36173590119c64, type: 2}
     Count: 1
     SecondaryCount: 30
     Status: 0

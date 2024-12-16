@@ -26,7 +26,7 @@ MonoBehaviour:
   CharacterAttachment:
     Socket: {fileID: 11400000, guid: 66be86ee20b277041876bdc5d848683a, type: 2}
     Position: {x: 6.5, y: 2.6, z: -2.4}
-    Rotation: {x: 90, y: 180, z: 0}
+    Rotation: {x: 76.67285, y: 157.39256, z: 326.3676}
     Scale: {x: 200, y: 200, z: 150}
   AttachOnEquipped: 1
   MoveOutOfInventoryOnEquip: 0
